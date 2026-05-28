@@ -35,6 +35,27 @@ useEffect(() => {
     fetchCats();
 }, []);
 
+useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}, [currentPage]);
+
+const lastCatPosition = currentPage * CATS_PER_PAGE;
+const firstCatPosition = lastCatPosition - CATS_PER_PAGE;
+const currentCats = filteredCats.slice(firstCatPosition, lastCatPosition);
+const totalPages = Math.ceil(filteredCats.length / CATS_PER_PAGE);
+
+function goToNextPage() {
+    if (currentPage < totalPages) {
+        setCurrentPage(currentPage + 1);
+    }
+}
+
+function goToPreviousPage() {
+    if (currentPage > 1) {
+        setCurrentPage(currentPage - 1);
+    }
+}
+
 
 return (
     
@@ -43,8 +64,9 @@ return (
         <Toast show={cartMessage !== ""} onClose={() => setCartMessage("")} delay={3000} autohide className="mb-3">
             <Toast.Body>{cartMessage}</Toast.Body>
         </Toast>
+
         <Row>
-        {allCats.map(cat => {
+        {currentCats.map(cat => {
             const imageUrl = cat.reference_image_id
             ? `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`
             : "https://placecats.com/300/200";
@@ -67,7 +89,7 @@ return (
             <Card.Text>🌍{cat.origin}</Card.Text>
             <Card.Text className="small"> For more information about {cat.name}, follow the link below:</Card.Text>
             <a href={`/cats/${cat.id}`} className="mt-auto">More Info</a>
-            <Button variant="success" className="mt-2" onClick={() => addToCart(cat)}>
+            <Button variant="dark" className="mt-2" onClick={() => addToCart(cat)}>
                 Add to Cart 🛒
             </Button>
             </Card.Body>
@@ -76,6 +98,15 @@ return (
         );
         })}
         </Row>
+        <div className="d-flex justify-content-center align-items-center gap-3 mt-4">
+            <Button variant ="dark" onClick={goToPreviousPage} disabled={currentPage === 1}>
+                Previous
+            </Button>
+            <span>Page {currentPage} of {totalPages}</span>
+            <Button variant="dark" onClick={goToNextPage} disabled={currentPage === totalPages}>
+                Next
+            </Button>
+        </div>
         </Container>
     );
 }
