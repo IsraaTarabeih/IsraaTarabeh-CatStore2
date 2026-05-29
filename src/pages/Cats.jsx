@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Container, Row, Col, Card, Button, Toast } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Toast, Form } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
 
 
@@ -7,12 +7,13 @@ const API_URL = "https://api.thecatapi.com/v1/breeds?limit=30";
 const CATS_PER_PAGE = 10;
 
 
-
 function Cats () 
 {
     const [allCats, setAllCats] = useState([]);
     const [filteredCats, setFilteredCats] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchText, setSearchText] = useState("");
+
     const { addToCart, cartMessage, setCartMessage } = useContext(CartContext);
 
     const fetchCats = async () => {
@@ -30,6 +31,18 @@ function Cats ()
     }
 
 } 
+
+function handleSearch(event) {
+    const text = event.target.value;
+
+    setSearchText(text);
+
+    const filtered = allCats.filter(cat =>
+        cat.name.toLowerCase().includes(text.toLowerCase())
+    );
+    setFilteredCats(filtered);
+    setCurrentPage(1);
+}
 
 useEffect(() => {
     fetchCats();
@@ -65,6 +78,16 @@ return (
             <Toast.Body>{cartMessage}</Toast.Body>
         </Toast>
 
+        <Form.Group className="mb-4">
+            <Form.Label>Search for cats:</Form.Label>
+            <Form.Control
+                type="text"
+                placeholder="Enter cat name..."
+                value={searchText}
+                onChange={handleSearch}
+            />
+        </Form.Group>
+
         <Row>
         {currentCats.map(cat => {
             const imageUrl = cat.reference_image_id
@@ -98,6 +121,7 @@ return (
         );
         })}
         </Row>
+        {filteredCats.length > 0 && (
         <div className="d-flex justify-content-center align-items-center gap-3 mt-4">
             <Button variant ="dark" onClick={goToPreviousPage} disabled={currentPage === 1}>
                 Previous
@@ -107,6 +131,7 @@ return (
                 Next
             </Button>
         </div>
+        )}
         </Container>
     );
 }
