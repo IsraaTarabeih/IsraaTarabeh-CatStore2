@@ -2,7 +2,6 @@ import { Navbar, Container, Nav, } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-/*import '../CSS/NavbarStyle.css' */
 
 function NavbarComp() {
     const { cart } = useContext(CartContext);
