@@ -9,15 +9,22 @@ import NavbarComp from './components/NavbarComp'
 function App() {
   
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <NavbarComp />
+
+      <main className="flex-grow-1 d-flex flex-column">
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />
         <Route path="/cats" element={<Cats />} />
         <Route path="/cart" element={<Cart />} />
       </Routes> 
-    </>
+      </main>
+
+      <footer className="text-center py-3 bg-black text-white">
+      © 2026 CatStore. All rights reserved.
+      </footer>
+    </div>
   )
 }
 

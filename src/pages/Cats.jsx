@@ -122,7 +122,7 @@ return (
         })}
         </Row>
         {filteredCats.length > 0 && (
-        <div className="d-flex justify-content-center align-items-center gap-3 mt-4">
+        <div className="d-flex justify-content-center align-items-center gap-3 mt-4 mb-2">
             <Button variant ="dark" onClick={goToPreviousPage} disabled={currentPage === 1}>
                 Previous
             </Button>
