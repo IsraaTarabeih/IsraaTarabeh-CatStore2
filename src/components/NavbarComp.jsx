@@ -1,29 +1,31 @@
 import { Navbar, Container, Nav, } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 
 function NavbarComp() {
     const { cart } = useContext(CartContext);
+    const [expanded, setExpanded] = useState(false);
 
     return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar bg="black" variant="dark" expand={false} expanded={expanded}>
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" onClick={() => setExpanded(false)}>
+        CatStore
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/" onClick={() => setExpanded(false)}>
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/cats">
+            <Nav.Link as={Link} to="/cats" onClick={() => setExpanded(false)}>
               Cats
             </Nav.Link>
-            <Nav.Link as={Link} to="/about">
+            <Nav.Link as={Link} to="/about" onClick={() => setExpanded(false)}>
               About
             </Nav.Link>
-            <Nav.Link as={Link} to="/cart">
+            <Nav.Link as={Link} to="/cart" onClick={() => setExpanded(false)}>
               Cart ({cart.length})
             </Nav.Link>
           </Nav>
