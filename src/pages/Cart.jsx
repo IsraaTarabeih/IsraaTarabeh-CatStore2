@@ -1,9 +1,47 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
-import { Container, Row, Col, Card, Button, Toast } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Toast, Modal, Form, Alert } from "react-bootstrap";
 
 function Cart() {
-    const { cart, removeFromCart, cartMessage, setCartMessage } = useContext(CartContext);
+    const { cart, removeFromCart, clearCart, cartMessage, setCartMessage } = useContext(CartContext);
+    const [showModal, setShowModal] = useState(false);
+    const [orderMessage, setOrderMessage] = useState("");
+    const [customerInfo, setCustomerInfo] = useState({
+        name: "",
+        email: "",
+        address: ""
+    });
+    const { name, email, address } = customerInfo;
+
+    function openOrderModal() {
+        setShowModal(true);
+    }
+    
+
+    function closeOrderModal() {
+        setShowModal(false);
+        setOrderMessage("");
+    }
+
+    function placeOrder() {
+        if (name.trim() === "" || email.trim() === "" || address.trim() === "") {
+            setOrderMessage("Please fill in all fields.");
+            return;
+        }
+        
+        const catNames = cart.map(cat => cat.name).join(", ");
+        alert(`Thank you for your order, ${name}!\n\nOrdered cats: ${catNames}\n\nConfirmation sent to: ${email}\nShipping to: ${address}`);
+        setShowModal(false);
+        clearCart();
+    }
+
+    function handleCustomerInfoChange(event) {
+        const { name, value } = event.target;
+
+        setCustomerInfo({ ...customerInfo, [name]: value });
+        setOrderMessage("");
+    }
+    
 
     return (
         <Container className="mt-4">
@@ -16,6 +54,7 @@ function Cart() {
             {cart.length === 0 ? (
                 <p className="text-center">Your cart is empty.</p>
             ) : (
+                <>
                 <Row>
                     {cart.map((cat) => {
                         const imageUrl = cat.reference_image_id
@@ -45,6 +84,52 @@ function Cart() {
                         );
                         })}
                 </Row>
+                <div className="text-center">
+                    <Button variant="dark" onClick={openOrderModal}>
+                        Place Order
+                    </Button>
+                </div>
+                <Modal show={showModal} onHide={closeOrderModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Place Order</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        {orderMessage && <Alert variant="danger">{orderMessage}</Alert>}
+                        <Form.Group className="mb-3">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control
+                            type="text"
+                            name="name"
+                            value={customerInfo.name}
+                            onChange={handleCustomerInfoChange}
+                        />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control
+                            type="email"
+                            name="email"
+                            value={customerInfo.email}
+                            onChange={handleCustomerInfoChange}
+                        />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Address</Form.Label>
+                            <Form.Control
+                            type="text"
+                            name="address"
+                            value={customerInfo.address}
+                            onChange={handleCustomerInfoChange}
+                        />
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="success" onClick={placeOrder}>
+                            Place Order
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                </>
             )}
         </Container>
     );

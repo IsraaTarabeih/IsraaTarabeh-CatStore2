@@ -57,7 +57,7 @@ function About() {
       }}>
         <h3>📞Contact Us</h3>
         <p>
-          If you have any questions or want to learn more about our cats, please don't hesitate to contact us. We are here to help you find your perfect feline companion!
+          If you have any questions or want to learn more about our cats, please don't hesitate to contact us. We are here to help you find your perfect furry companion!
         </p>
       </div>
 
