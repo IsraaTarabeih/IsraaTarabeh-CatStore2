@@ -26,9 +26,12 @@ function removeFromCart(catId) {
         return currentCart;
     }
 
+function clearCart() {
+    setCart([]);
+}
 
 return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, cartMessage, setCartMessage }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, cartMessage, setCartMessage, clearCart }}>
         {children}
     </CartContext.Provider>
 );
