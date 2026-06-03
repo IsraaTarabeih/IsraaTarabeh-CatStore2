@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Container, Row, Col, Card, Button, Toast, Form } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 
 const API_URL = "https://api.thecatapi.com/v1/breeds?limit=30";
@@ -95,7 +96,7 @@ return (
             : "https://placecats.com/300/200";
 
         return (   
-        <Col key={cat.id} md={3} className="mb-4">
+        <Col key={cat.id} xs={12} lg={3} className="mb-4">
             <Card className="h-100 text-center shadow-sm">
             <Card.Img 
             variant="top"
@@ -111,7 +112,9 @@ return (
             <Card.Title>{cat.name}</Card.Title>
             <Card.Text>🌍{cat.origin}</Card.Text>
             <Card.Text className="small"> For more information about {cat.name}, follow the link below:</Card.Text>
-            <a href={`/cats/${cat.id}`} className="mt-auto">More Info</a>
+            <Link to={`/cats/${cat.id}`} className="mt-auto">
+                More Info
+            </Link>
             <Button variant="dark" className="mt-2" onClick={() => addToCart(cat)}>
                 Add to Cart 🛒
             </Button>

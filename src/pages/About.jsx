@@ -16,7 +16,8 @@ function About() {
       <div className="p-4 mt-3 rounded shadow-sm"
       style={{ 
         backgroundColor: "rgba(255, 255, 255, 0.9)",
-        width: "50%"
+        width: "90%",
+        maxWidth: "900px"
       }}>
         <h1>About CatStore</h1>
         <p className="mb-0">
@@ -33,7 +34,8 @@ function About() {
       <div className="p-4 mt-3 rounded shadow-sm"
       style={{ 
         backgroundColor: "rgba(255, 255, 255, 0.9)",
-        width: "50%"
+        width: "90%",
+        maxWidth: "900px" 
       }}>
         <h3>👤Owner</h3>
         <p>
@@ -53,7 +55,8 @@ function About() {
       <div className="p-4 mt-3 mb-3 rounded shadow-sm"
       style={{ 
         backgroundColor: "rgba(255, 255, 255, 0.9)",
-        width: "50%"
+        width: "90%",
+        maxWidth: "900px"
       }}>
         <h3>📞Contact Us</h3>
         <p>
