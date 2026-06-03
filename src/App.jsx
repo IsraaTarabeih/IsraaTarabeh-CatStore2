@@ -4,6 +4,7 @@ import Homepage from './pages/Homepage'
 import Cats from './pages/Cats'
 import Cart from './pages/Cart'
 import NavbarComp from './components/NavbarComp'
+import CatInfo from './pages/CatInfo'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/cats" element={<Cats />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/cats/:id" element={<CatInfo />} />
       </Routes> 
       </main>
 

@@ -62,7 +62,7 @@ function Cart() {
                         : "https://placecats.com/300/200";
 
                         return (        
-                        <Col key={cat.id} md={4} className="mb-4">
+                        <Col key={cat.id} xs={12} lg={3} className="mb-4">
                             <Card className="h-100 text-center shadow-sm">
                                 <Card.Img variant="top" 
                                 src={imageUrl} 

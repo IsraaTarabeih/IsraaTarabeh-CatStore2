@@ -24,7 +24,7 @@ function Homepage() {
       <div className="d-flex flex-column align-items-center justify-content-center gap-3 mt-3">
       <p>Discover our adorable furry friends today</p>
       <Button as={Link} to="/cats" variant="dark" >
-        Browse Cats
+        Browse all Cats
       </Button>
       </div>
       </div>
