@@ -1,3 +1,5 @@
+// Navigation bar component. Provides links to different pages and displays the cart item count.
+
 import { Navbar, Container, Nav, } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";

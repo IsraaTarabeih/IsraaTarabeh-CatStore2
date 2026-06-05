@@ -1,3 +1,5 @@
+// Entry point for the React application. Sets up React Router, Bootstrap, and the global Cart context.
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
@@ -15,4 +17,3 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 
 )
-

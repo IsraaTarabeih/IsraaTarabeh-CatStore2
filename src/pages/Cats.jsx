@@ -1,3 +1,5 @@
+// Displays cat breeds fetched from The Cat API, with search, pagination and cart functionality.
+
 import { useState, useEffect, useContext } from "react";
 import { Container, Row, Col, Card, Button, Toast, Form } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
@@ -17,6 +19,7 @@ function Cats ()
 
     const { addToCart, cartMessage, setCartMessage } = useContext(CartContext);
 
+    // Fetches cat breed data from The Cat API.
     const fetchCats = async () => {
     try {
         const response = await fetch(API_URL);
@@ -33,6 +36,7 @@ function Cats ()
 
 } 
 
+// Filters cats based on search input and updates the displayed list and pagination accordingly.
 function handleSearch(event) {
     const text = event.target.value;
 
@@ -45,14 +49,17 @@ function handleSearch(event) {
     setCurrentPage(1);
 }
 
+// Loads cat data when the page is first rendered.
 useEffect(() => {
     fetchCats();
 }, []);
 
+// Scrolls back to the top whenever the page number changes.
 useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 }, [currentPage]);
 
+// Calculates which cats should be displayed on the current page.
 const lastCatPosition = currentPage * CATS_PER_PAGE;
 const firstCatPosition = lastCatPosition - CATS_PER_PAGE;
 const currentCats = filteredCats.slice(firstCatPosition, lastCatPosition);
