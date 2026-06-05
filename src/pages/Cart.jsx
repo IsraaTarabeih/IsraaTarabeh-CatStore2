@@ -1,3 +1,5 @@
+//Shopping cart page where users can review the cats they have added to their cart, remove items, and place an order.
+
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { Container, Row, Col, Card, Button, Toast, Modal, Form, Alert } from "react-bootstrap";
@@ -23,6 +25,7 @@ function Cart() {
         setOrderMessage("");
     }
 
+    // Validates the order form and completes the order if all fields are filled.
     function placeOrder() {
         if (name.trim() === "" || email.trim() === "" || address.trim() === "") {
             setOrderMessage("Please fill in all fields.");
@@ -35,6 +38,7 @@ function Cart() {
         clearCart();
     }
 
+    // Updates form fields and clears any valdation message when the user types.
     function handleCustomerInfoChange(event) {
         const { name, value } = event.target;
 
@@ -89,6 +93,8 @@ function Cart() {
                         Place Order
                     </Button>
                 </div>
+                
+                {/* Order form displayed in a modal before completing the purchase */}
                 <Modal show={showModal} onHide={closeOrderModal}>
                     <Modal.Header closeButton>
                         <Modal.Title>Place Order</Modal.Title>

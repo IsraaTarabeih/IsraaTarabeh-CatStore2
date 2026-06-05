@@ -1,3 +1,6 @@
+// About page contains information about the store, the owner, and contact details. 
+// It uses a cat-themed background image and is styled with Bootstrap for a clean and responsive design.
+
 import catBackground from "../assets/cat-background.png";
 import { Container } from "react-bootstrap";
 

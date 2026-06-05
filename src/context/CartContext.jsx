@@ -1,3 +1,6 @@
+// Creates and manages the global cart state used across the application. 
+// Provides functions to add, remove, and clear items from the cart, as well as a message for cart actions.
+
 import { createContext, useState } from "react";
 
 export const CartContext = createContext();
@@ -30,6 +33,7 @@ function clearCart() {
     setCart([]);
 }
 
+// Makes cart data and functions available to all components wrapped by CartProvider.
 return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart, cartMessage, setCartMessage, clearCart }}>
         {children}

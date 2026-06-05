@@ -1,3 +1,5 @@
+// Landing page that introduces the store and provides a link to browse available cats.
+
 import catBackground from "../assets/cat-background.png";
 import { Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -16,7 +18,7 @@ function Homepage() {
 
       <div className="p-4 rounded shadow-sm"
       style={{ 
-        backgroundColor: "rgba(255, 255, 255, 0.9)" // Hitta ingen lösning med bootstrap för transparent bakgrund
+        backgroundColor: "rgba(255, 255, 255, 0.9)" 
       }}>
       <h1>Welcome to CatStore</h1>
       <h5>We have the best cats in the world!</h5>

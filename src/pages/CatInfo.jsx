@@ -1,3 +1,5 @@
+// Displays detailed information about a selected cat breed.
+
 import { useParams, Link } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
@@ -6,6 +8,7 @@ function CatInfo() {
     const { id } = useParams();
     const [cat, setCat] = useState(null);
 
+    // Fetches information for the selected cat using the id from the URL.
     useEffect(() => {
         const fetchCatInfo = async () => {
             try {

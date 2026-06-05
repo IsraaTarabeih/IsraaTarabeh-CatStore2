@@ -1,3 +1,5 @@
+// Main application component. Sets up the layout, navigation, routing and footer.
+
 import { Route, Routes } from 'react-router-dom'
 import About from './pages/About'
 import Homepage from './pages/Homepage'
